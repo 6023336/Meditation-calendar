@@ -228,9 +228,9 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Online Meditation Group · Monthly</div>
+    <div class="eyebrow">Online Meditation Group</div>
     <h1 class="title">Meditation<br>as Resistance</h1>
-    <p class="tagline">Finding stability and community in lonely, unstable times.</p>
+    <p class="tagline">Reclaim your mind through guided meditation and progressive community.</p>
     <div class="breath-row">
       <div class="breath-circle">
         <svg viewBox="0 0 56 56">
@@ -238,7 +238,7 @@
           <circle class="arc" cx="28" cy="28" r="24"></circle>
         </svg>
       </div>
-      <div class="breath-label">One hour, once a month —<br>held for you.</div>
+      <div class="breath-label">One hour, once a month.</div>
     </div>
   </div>
 </div>
@@ -247,12 +247,9 @@
   <div class="panel">
     <div class="panel-label">Session Details</div>
 
+    <!-- UPDATE THIS EACH MONTH to match startLocal/endLocal below -->
     <div class="detail-row">
-      <span class="detail-key">Repeats</span>
-      <span class="detail-val">Second Sunday of every month</span>
-    </div>
-    <div class="detail-row">
-      <span class="detail-key">Next</span>
+      <span class="detail-key">Date</span>
       <span class="detail-val">Sunday, September 13, 2026</span>
     </div>
     <div class="detail-row">
@@ -266,7 +263,7 @@
 
     <div class="notice">
       <strong>Please note</strong>
-      No entry after 4:45 PM. This is a standing Signal call link — same one every month.
+      No entry after 4:45 PM, which is when the guided meditation begins.
     </div>
 
     <div class="cta-group">
@@ -280,26 +277,28 @@
       </button>
     </div>
 
-    <p class="fine-print">Adds the whole monthly series — one tap, every second Sunday.</p>
+    <p class="fine-print">Adds this session to your calendar — one tap.</p>
   </div>
 
-  <p class="footer-note">Meditation as Resistance · a recurring space for radical humanism &amp; radical empathy</p>
+  <p class="footer-note">Meditation as Resistance · A space for radical humanism &amp; radical empathy</p>
 </div>
 
 <script>
-  // ---- Event config — edit these values to update the series ----
+  // =====================================================================
+  // UPDATE THIS EVERY MONTH — just change startLocal and endLocal below.
+  // Format: YYYYMMDDTHHMMSS (24-hour clock, US Eastern time).
+  // Example: 4:30 PM on Sept 13, 2026 -> "20260913T163000"
+  // =====================================================================
   const EVENT = {
     title: "Meditation as Resistance",
-    description: "Finding stability and community in lonely, unstable times. Online meditation group. No entry after 4:45 PM. Join via Signal: https://signal.link/call/#key=mrxh-cqqk-kpqq-ksmk-tdpk-cqcg-fqgs-bbrt",
+    description: "Reclaim your mind through guided meditation and progressive community. No entry after 4:45 PM, which is when the guided meditation begins. Join via Signal: https://signal.link/call/#key=mrxh-cqqk-kpqq-ksmk-tdpk-cqcg-fqgs-bbrt",
     location: "https://signal.link/call/#key=mrxh-cqqk-kpqq-ksmk-tdpk-cqcg-fqgs-bbrt",
-    // First occurrence, in US Eastern local time
+    // <<< UPDATE THESE TWO LINES EACH MONTH >>>
     startLocal: "20260913T163000",
-    endLocal:   "20260913T173000",
-    // Recurrence: 2nd Sunday of every month
-    rrule: "FREQ=MONTHLY;BYDAY=2SU"
+    endLocal:   "20260913T173000"
   };
 
-  // ---- Google Calendar link (recurring) ----
+  // ---- Google Calendar link (single event, no recurrence) ----
   function buildGoogleUrl(e){
     const params = new URLSearchParams({
       action: "TEMPLATE",
@@ -307,7 +306,6 @@
       dates: `${e.startLocal}/${e.endLocal}`,
       details: e.description,
       location: e.location,
-      recur: `RRULE:${e.rrule}`,
       ctz: "America/New_York"
     });
     return "https://calendar.google.com/calendar/render?" + params.toString();
@@ -349,7 +347,6 @@
       "DTSTAMP:" + dtstamp,
       "DTSTART;TZID=America/New_York:" + e.startLocal,
       "DTEND;TZID=America/New_York:" + e.endLocal,
-      "RRULE:" + e.rrule,
       "SUMMARY:" + e.title,
       "DESCRIPTION:" + e.description.replace(/,/g, "\\,"),
       "LOCATION:" + e.location.replace(/,/g, "\\,"),
